@@ -1,10 +1,10 @@
 const notes = require('express').Router();
 
-notes.get("/api/notes", (req, res) => {
-    res.sendFile(path.join(__dirname, "/db/db.json"))
+notes.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "./db/db.json"))
 });
 
-notes.post("/api/notes", (req, res) => {
+notes.post("/", (req, res) => {
     const notes = JSON.parse(fs.readFileSync("./db/db.json"));
     const newNotes = req.body;
     newNotes.id = uuid.v4();
@@ -13,7 +13,7 @@ notes.post("/api/notes", (req, res) => {
     res.json(notes);
 });
 
-notes.delete("/api/notes/:id", (req, res) => {
+notes.delete("/:id", (req, res) => {
     const notes = JSON.parse(fs.readFileSync("./db/db.json"));
     const delNote = notes.filter((rmvNote) => rmvNote.id !== req.params.id);
     fs.writeFileSync("./db/db.json", JSON.stringify(delNote));
