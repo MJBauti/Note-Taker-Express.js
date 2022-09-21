@@ -5,7 +5,7 @@ const path = require("path");
 const { v4: uuidv4 } = require('uuid');
 
 noteTaker.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "./db/db.json"))
+    res.sendFile(path.join(__dirname, "../db/db.json"))
 });
 
 noteTaker.post("/", (req, res) => {
